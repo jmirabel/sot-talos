@@ -142,6 +142,11 @@ class Talos(AbstractHumanoidRobot):
             self.dynamic.acceleration.value = self.dimension*(0.,)
 
         # Create operational points based on operational points map (if provided)
+        with open("/tmp/displaySignals", 'w') as f:
+            for s in self.device.signals():
+                print (str(s), file=f)
+            for v in self.OperationalPoints:
+                print (v, file=f)
         if self.OperationalPointsMap is not None:
             self.initializeOpPoints()
 
